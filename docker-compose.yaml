@@ -43,6 +43,8 @@ services:
      - "127.0.0.1:8080:8080"
     volumes:
       - ./searxng:/etc/searxng:rw
+      - ./donate.md:/usr/local/searxng/searx/infopage/en/donate.md
+      - ./sitemap.xml:/usr/local/searxng/searx/infopage/en/sitemap.xml
     environment:
       - SEARXNG_BASE_URL=https://${SEARXNG_HOSTNAME:-localhost}/
     cap_drop:
