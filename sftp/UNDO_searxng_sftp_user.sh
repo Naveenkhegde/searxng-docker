@@ -7,7 +7,7 @@ clear
 
 # Remove and purge SSH on server, if not already installed.
 # Below command also removes /etc/ssh/sshd_config
-sudo apt --purge remove openssh-server ssh -y
+sudo apt --purge remove openssh-server -y
 
 # Remove created user for SFTP / SSH.
 sudo userdel searxng
