@@ -44,6 +44,19 @@ You can skip this step if you don't use systemd.
   systemctl enable $(pwd)/searxng-docker.service
   systemctl start searxng-docker.service
   ```
+### Start SearXNG with crontab
+
+If using systemd as above does not work, you can use a crontab entry to start this container.
+
+To start the container via crontab:
+1. Ensure the 'start_container_in_crontab.sh' script is executable with the following command:
+   - `sudo chmod u+x start_container_in_crontab.sh`
+2. Open Crontab with the following command: `sudo crontab -e` (edit crontab in sudo mode)
+2. Enter the following snippet (note: edit container path as necessary):
+    - `@reboot ( /home/searxng/searxng-docker/./start_container_in_crontab.sh )&`
+3. Save the changes made. If you have set Vim as your default crontab editor, enter Ctrl+C then `:wq`, and then Enter to save.
+   
+Make sure your container path has the docker-compose.yml file in the same directory.
 
 ## Note on the image proxy feature
 
