@@ -10,5 +10,4 @@ if [[ $(sudo systemctl is-active docker) != active ]]; then
   
 fi
 
-# (delay by 15 seconds to ensure needed services are running)
-sleep 15s ; cd /home/searxng/searxng-docker ; sudo /usr/bin/docker-compose up -d
+cd /home/searxng/searxng-docker ; sudo /usr/bin/docker-compose up -d
