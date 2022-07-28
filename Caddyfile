@@ -1,5 +1,11 @@
 {
   admin off
+
+  servers :443 {
+     protocol {
+        experimental_http3
+     }
+  }
 }
 
 {$SEARXNG_HOSTNAME} {
