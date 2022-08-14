@@ -2,7 +2,7 @@
 use_default_settings: true
 server:
   # base_url is defined in the SEARXNG_BASE_URL environment variable, see .env and docker-compose.yml
-  secret_key: "ultrasecretkey"  # change this!
+  secret_key: "89ccb6268e361078eaac531afb29281ff1cdb85ad3b98b65caa5b1359aff6ee3"  # change this!
   limiter: true  # can be disabled for a private instance
   image_proxy: true
   method: "GET"
@@ -14,7 +14,7 @@ general:
   debug: false
   instance_name:  "I Can Find It Online"
   privacypolicy_url: false
-  donation_url: https://icanfindit.online/info/en/donate
+  donation_url: /info/en/donate
   contact_url: https://www.robertattfield.com
   enable_metrics: true
 search:
