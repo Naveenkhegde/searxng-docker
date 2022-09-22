@@ -23,7 +23,7 @@ brand:
 search:
   # Filter results. 0: None, 1: Moderate, 2: Strict
   safe_search: 0
-  # Existing autocomplete backends: "dbpedia", "duckduckgo", "google",
+  # Existing autocomplete backends: "dbpedia", "duckduckgo", "google", "yandex",
   # "seznam", "startpage", "swisscows", "qwant", "wikipedia" - leave blank to turn it off
   # by default.
   autocomplete: ""
@@ -61,7 +61,7 @@ server:
   # If your instance owns a /etc/searxng/settings.yml file, then set the following
   # values there.
 
-  secret_key: "4b3b5bb2e9fc07d1370af8b4ac1bbdff8baaa596d7dc85af2d0049152bc257b4"  # change this!
+  secret_key: "9fb90686a3edea985c691678bf71d8486aaf9f769afcf1ee035409ceed59b3a5"  # change this!
   # Proxying image results through searx
   image_proxy: false
   # 1.0 and 1.1 are supported
@@ -95,6 +95,8 @@ ui:
   default_theme: simple
   # center the results ?
   center_alignment: false
+  # URL prefix of the internet archive, don't forgett trailing slash (if needed).
+  # cache_url: "https://webcache.googleusercontent.com/search?q=cache:"
   # Default interface locale - leave blank to detect from browser information or
   # use codes from the 'locales' config section
   default_locale: ""
@@ -121,6 +123,7 @@ ui:
 #
 # result_proxy:
 #   url: http://127.0.0.1:3000/
+#   # the key is a base64 encoded string, the YAML !!binary prefix is optional
 #   key: !!binary "your_morty_proxy_key"
 #   # [true|false] enable the "proxy" button next to each result
 #   proxify_results: true
@@ -262,10 +265,20 @@ categories_as_tabs:
   social media:
 
 engines:
+  - name: 9gag
+    engine: 9gag
+    shortcut: 9g
+    disabled: true
+
   - name: apk mirror
     engine: apkmirror
     timeout: 4.0
     shortcut: apkm
+    disabled: true
+
+  - name: apple app store
+    engine: apple_app_store
+    shortcut: aps
     disabled: true
 
   # Requires Tor
@@ -539,6 +552,12 @@ engines:
     shortcut: ddi
     timeout: 3.0
     disabled: true
+
+  - name: apple maps
+    engine: apple_maps
+    shortcut: apm
+    disabled: true
+    timeout: 5.0
 
   - name: emojipedia
     engine: emojipedia
@@ -1198,6 +1217,7 @@ engines:
       results: HTML
 
   - name: qwant
+    qwant_categ: web
     engine: qwant
     shortcut: qw
     categories: [general, web]
@@ -1206,6 +1226,7 @@ engines:
       rosebud: *test_rosebud
 
   - name: qwant news
+    qwant_categ: news
     engine: qwant
     shortcut: qwn
     categories: news
@@ -1213,6 +1234,7 @@ engines:
     network: qwant
 
   - name: qwant images
+    qwant_categ: images
     engine: qwant
     shortcut: qwi
     categories: [images, web]
@@ -1220,6 +1242,7 @@ engines:
     network: qwant
 
   - name: qwant videos
+    qwant_categ: videos
     engine: qwant
     shortcut: qwv
     categories: [videos, web]
@@ -1420,6 +1443,11 @@ engines:
   #   torznab_categories:  # optional
   #     - 2000
   #     - 5000
+
+  - name: twitter
+    shortcut: tw
+    engine: twitter
+    disabled: true
 
   # maybe in a fun category
   #  - name: uncyclopedia
@@ -1658,6 +1686,15 @@ engines:
     engine: seznam
     disabled: true
 
+  # - name: deepl
+  #   engine: deepl
+  #   shortcut: dpl
+  #   # You can use the engine using the official stable API, but you need an API key
+  #   # See: https://www.deepl.com/pro-api?cta=header-pro-api
+  #   api_key: ''  # required!
+  #   timeout: 5.0
+  #   disabled: true
+
   - name: mojeek
     shortcut: mjk
     engine: xpath
@@ -1773,6 +1810,7 @@ engines:
     url_xpath: //div[@class="upper-synonyms"]/a/@href
     content_xpath: //div[@class="synonyms-list-group"]
     title_xpath: //div[@class="upper-synonyms"]/a
+    no_result_for_http_status: [404]
     about:
       website: https://www.woxikon.de/
       wikidata_id:  # No Wikidata ID
@@ -1826,6 +1864,9 @@ engines:
       month: 'pm'
       year: 'py'
     categories: [general, web]
+    disabled: true
+    headers:
+      Accept-Encoding: gzip, deflate
     about:
       website: https://brave.com/search/
       wikidata_id: Q107355971

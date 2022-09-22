@@ -3,7 +3,7 @@
 
   servers :443 {
     protocol {
-      experimental_http3
+      # experimental_http3
     }
   }
   
