@@ -17,6 +17,11 @@ general:
   donation_url: /info/en/donate
   contact_url: https://www.robertattfield.com
   enable_metrics: true
+brand:
+  issue_url: https://github.com/rattfieldnz/searxng-docker/issues
+  docs_url: https://docs.searxng.org
+  public_instances: https://searx.space
+  wiki_url: https://github.com/rattfieldnz/searxng-docker/wiki
 search:
   autocomplete: "duckduckgo"
 engines:

@@ -19,9 +19,9 @@ Create a new SearXNG  instance in five minutes using Docker
   git clone https://github.com/searxng/searxng-docker.git
   cd searxng-docker
   ```
-- Edit the [.env](https://github.com/searxng/searxng-docker/blob/master/.env) file to set the hostname and an email
+- Edit the [.env](https://github.com/rattfieldnz/searxng-docker/blob/master/.env) file to set the hostname and an email
 - Generate the secret key ```sed -i "s|ultrasecretkey|$(openssl rand -hex 32)|g" searxng/settings.yml```
-- Edit the [searxng/settings.yml](https://github.com/searxng/searxng-docker/blob/master/searxng/settings.yml) file according to your need
+- Edit the [searxng/settings.yml](https://github.com/rattfieldnz/searxng-docker/blob/master/searxng/settings.yml) file according to your need
 - Check everything is working: ```docker-compose up```
 - Run SearXNG in the background: ```docker-compose up -d```
 
@@ -64,7 +64,7 @@ The SearXNG image proxy is activated by default.
 
 The default [Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy) allow the browser to access to ```${SEARXNG_HOSTNAME}``` and ```https://*.tile.openstreetmap.org;```.
 
-If some users wants to disable the image proxy, you have to modify [./Caddyfile](https://github.com/searxng/searxng-docker/blob/master/Caddyfile). Replace the ```img-src 'self' data: https://*.tile.openstreetmap.org;``` by ```img-src * data:;```.
+If some users wants to disable the image proxy, you have to modify [./Caddyfile](https://github.com/rattfieldnz/searxng-docker/blob/master/Caddyfile). Replace the ```img-src 'self' data: https://*.tile.openstreetmap.org;``` by ```img-src * data:;```.
 
 ## Multi Architecture Docker images
 
@@ -85,4 +85,4 @@ docker-compose up
 
 To update this `docker-compose.yml` file:
 
-Check out the newest version on github: [searxng/searxng-docker](https://github.com/searxng/searxng-docker).
+Check out the newest version on github: [rattfieldnz/searxng-docker](https://github.com/rattfieldnz/searxng-docker).
