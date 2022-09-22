@@ -759,11 +759,6 @@ engines:
       require_api_key: false
       results: JSON
 
-  - name: opensemanticsearch
-    engine: opensemantic
-    shortcut: oss
-    base_url: 'http://localhost:8983/solr/opensemanticsearch/'
-
   - name: openstreetmap
     engine: openstreetmap
     shortcut: osm
@@ -994,11 +989,6 @@ engines:
     engine: unsplash
     shortcut: us
 
-  - name: yahoo
-    engine: yahoo
-    shortcut: yh
-    disabled: false
-
   - name: yahoo news
     engine: yahoo_news
     shortcut: yhn
@@ -1033,27 +1023,6 @@ engines:
     disabled: false
     about:
       website: https://wiby.me/
-
-  - name: marginalia
-    engine: json_engine
-    shortcut: mar
-    categories: general
-    paging: false
-    # index: {"0": "popular", "1": "blogs", "2": "big_sites",
-    # "3": "default", "4": experimental"}
-    search_url: https://api.marginalia.nu/public/search/{query}?index=4&count=20
-    results_query: results
-    url_query: url
-    title_query: title
-    content_query: description
-    timeout: 1.5
-    disabled: false
-    about:
-      website: https://www.marginalia.nu/
-      official_api_documentation: https://api.marginalia.nu/
-      use_official_api: true
-      require_api_key: true
-      results: JSON
 
   - name: alexandria
     engine: json_engine
@@ -1198,28 +1167,6 @@ engines:
     shortcut: szn
     engine: seznam
     disabled: false
-
-  - name: mojeek
-    shortcut: mjk
-    engine: xpath
-    paging: true
-    categories: [general, web]
-    search_url: https://www.mojeek.com/search?q={query}&s={pageno}
-    results_xpath: //a[@class="ob"]
-    url_xpath: ./@href
-    title_xpath: ./h2
-    content_xpath: ../p[@class="s"]
-    suggestion_xpath: /html/body//div[@class="top-info"]/p[@class="top-info spell"]/a
-    first_page_num: 0
-    page_size: 10
-    disabled: false
-    about:
-      website: https://www.mojeek.com/
-      wikidata_id: Q60747299
-      official_api_documentation: https://www.mojeek.com/services/api.html/
-      use_official_api: false
-      require_api_key: false
-      results: HTML
 
   - name: naver
     shortcut: nvr
