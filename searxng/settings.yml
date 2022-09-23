@@ -18,6 +18,7 @@ general:
   contact_url: https://www.robertattfield.com
   enable_metrics: true
 brand:
+  source_code: https://github.com/rattfieldnz/searxng-docker
   issue_url: https://github.com/rattfieldnz/searxng-docker/issues
   docs_url: https://docs.searxng.org
   public_instances: https://searx.space
@@ -359,7 +360,7 @@ engines:
     engine: gigablast
     shortcut: gb
     timeout: 4.0
-    disabled: false
+    disabled: true
 
   - name: gentoo
     engine: gentoo
@@ -953,7 +954,7 @@ engines:
     engine: startpage
     shortcut: sp
     timeout: 6.0
-    disabled: false
+    disabled: true
 
   - name: tokyotoshokan
     engine: tokyotoshokan
@@ -1311,7 +1312,7 @@ engines:
       month: 'pm'
       year: 'py'
     categories: [general, web]
-    disabled: false
+    disabled: true
     headers:
       Accept-Encoding: gzip, deflate
     about:
