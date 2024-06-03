@@ -1,17 +1,16 @@
 {
   admin off
+}
 
-  servers :443 {
-    protocol {
-      # experimental_http3
-    }
+:443 {
+  # Enable HTTP/2 and HTTP/3 automatically if supported
+  tls {
+    alpn h2 h3
   }
-  
-  servers :80 {
-    protocol {
-      allow_h2c
-    }
-  }
+}
+
+:80 {
+  # Allow HTTP/2 cleartext (h2c)
 }
 
 {$SEARXNG_HOSTNAME} {
@@ -44,28 +43,13 @@
   }
 
   header {
-      # Enable HTTP Strict Transport Security (HSTS) to force clients to always connect via HTTPS
       Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
-
-      # Enable cross-site filter (XSS) and tell browser to block detected attacks
       X-XSS-Protection "1; mode=block"
-
-      # Prevent some browsers from MIME-sniffing a response away from the declared Content-Type
       X-Content-Type-Options "nosniff"
-
-      # Disable some features
       Permissions-Policy "accelerometer=(),ambient-light-sensor=(),autoplay=(),camera=(),encrypted-media=(),focus-without-user-activation=(),geolocation=(),gyroscope=(),magnetometer=(),microphone=(),midi=(),payment=(),picture-in-picture=(),speaker=(),sync-xhr=(),usb=(),vr=()"
-
-      # Disable some features (legacy)
       Feature-Policy "accelerometer 'none';ambient-light-sensor 'none'; autoplay 'none';camera 'none';encrypted-media 'none';focus-without-user-activation 'none'; geolocation 'none';gyroscope 'none';magnetometer 'none';microphone 'none';midi 'none';payment 'none';picture-in-picture 'none'; speaker 'none';sync-xhr 'none';usb 'none';vr 'none'"
-
-      # Referer
       Referrer-Policy "no-referrer"
-
-      # X-Robots-Tag
       X-Robots-Tag "noarchive, nofollow"
-
-      # Remove Server header
       -Server
   }
 
@@ -74,20 +58,16 @@
       Access-Control-Allow-Origin  "*"
   }
 
-  # Cache
   header @static {
-      # Cache
       Cache-Control "public, max-age=31536000"
       defer
   }
 
   header @notstatic {
-      # No Cache
       Cache-Control "no-cache, no-store"
       Pragma "no-cache"
   }
 
-  # CSP (see http://content-security-policy.com/ )
   header @imageproxy {
       Content-Security-Policy "default-src 'none'; img-src 'self' data:"
   }
@@ -99,19 +79,15 @@
   header /robots.txt {
     User-agent : *
     Disallow :
-  } 
+  }
 
-  # SearXNG
   handle {
       encode zstd gzip
-
       reverse_proxy localhost:8080 {
           header_up X-Forwarded-Port {http.request.port}
           header_up X-Forwarded-Proto {http.request.scheme}
       }
-
   }
-
 }
 
 www.{$SEARXNG_HOSTNAME} {
